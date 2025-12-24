@@ -1,0 +1,7 @@
+{
+  "name": "Attenzia DOOH Audience Meter",
+  "description": "A high-performance digital billboard analytics dashboard with real-time audience metrics, demographic insights, and live feed visualization.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
