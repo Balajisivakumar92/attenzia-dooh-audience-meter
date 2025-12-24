@@ -2,14 +2,17 @@
 import React, { useState, useEffect } from 'react';
 import { 
   BarChart3, Users, Clock, DollarSign, Bell, 
-  ChevronRight, MapPin, Globe, LayoutDashboard 
+  ChevronRight, MapPin, Globe, LayoutDashboard, LogOut 
 } from 'lucide-react';
 import MetricCard from './components/MetricCard';
 import { HourlyChart, DemographicsChart } from './components/AnalyticsCharts';
 import LiveView from './components/LiveView';
 import { AgeDistribution, EngagementMetrics, CampaignActions } from './components/SidebarMetrics';
+import Login from './components/Login';
 
 const App: React.FC = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [currentUser, setCurrentUser] = useState('');
   const [time, setTime] = useState(new Date().toLocaleTimeString('en-US', { hour12: true }));
 
   useEffect(() => {
@@ -19,6 +22,22 @@ const App: React.FC = () => {
     return () => clearInterval(timer);
   }, []);
 
+  const handleLogin = (username: string) => {
+    setCurrentUser(username);
+    setIsLoggedIn(true);
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    setCurrentUser('');
+  };
+
+  // Show login screen if not logged in
+  if (!isLoggedIn) {
+    return <Login onLogin={handleLogin} />;
+  }
+
+  // Show dashboard if logged in
   return (
     <div className="min-h-screen pb-12 relative">
       {/* Demo Watermark */}
@@ -61,8 +80,17 @@ const App: React.FC = () => {
                  <Bell className="w-5 h-5" />
                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full font-bold">2</span>
                </div>
+               <button
+                 onClick={handleLogout}
+                 className="flex items-center gap-1 text-red-500 hover:text-red-700 transition font-semibold"
+                 title="Logout"
+               >
+                 <LogOut className="w-4 h-4" />
+                 <span className="hidden sm:inline">Logout</span>
+               </button>
             </div>
             <span className="text-lg font-bold text-gray-700 font-mono tracking-widest mt-1">{time}</span>
+            <span className="text-xs text-gray-500 mt-1">User: <span className="font-semibold text-gray-700">{currentUser}</span></span>
           </div>
         </div>
       </header>
