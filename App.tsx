@@ -34,6 +34,11 @@ const App: React.FC = () => {
       <header className="bg-white px-8 py-6 shadow-sm mb-8">
         <div className="max-w-[1440px] mx-auto flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div className="flex items-center gap-4">
+            <img 
+              src="./letter-a.png"
+              alt="Attenzia Logo" 
+              className="w-12 h-12 rounded-xl shadow-lg"
+            />
             <div>
               <h1 className="text-xl font-bold text-gray-800 tracking-tight">Attenzia DOOH Audience Meter</h1>
               <div className="flex items-center gap-3">

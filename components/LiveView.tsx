@@ -24,7 +24,7 @@ const LiveView: React.FC = () => {
 
       <div className="relative rounded-xl overflow-hidden aspect-video bg-gray-900 group">
         <img 
-          src="../dooh-animation.gif" 
+          src="./dooh-animation.gif" 
           alt="Live Feed" 
           className="w-full h-full object-cover opacity-80"
         />
